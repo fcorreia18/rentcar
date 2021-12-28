@@ -5,17 +5,21 @@ app.use(express.json());
 
 const customers = [];
 
-
-app.post("/account",(req, res)=>{
-    const {name, bi} = req.body;
-    const id = uuidv4();
-
+const verifyIfExistsAccountBi = (req, res, next) =>{
+    const {bi} = req.headers;
     const biAlreadyExists = customers.some((data) => bi === data.bi);
     if (biAlreadyExists) {
         return res.status(400).json({
             error: "BI already exists"
         })
     }
+    return next();
+}
+
+app.post("/account",verifyIfExistsAccountBi,(req, res)=>{
+    const {name, bi} = req.body;
+    const id = uuidv4();
+
     customers.push({
         name, 
         bi, 
@@ -25,8 +29,8 @@ app.post("/account",(req, res)=>{
     res.status(201).send();
 });
 
-app.get("/statement/:bi",(req, res)=>{
-    const {bi} = req.params;
+app.get("/statement",(req, res)=>{
+    const {bi} = req.headers;
     const customer = customers.find((data)=> data.bi === bi);
     if (!customer) {
         return res.status(400).json({
