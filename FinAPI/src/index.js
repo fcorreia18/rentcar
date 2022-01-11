@@ -107,4 +107,10 @@ app.get("/statement/:date",verifyIfExistsAccountBi, (req, res)=>{
     return res.status(200).send(statement);
 })
 
+app.delete("/account",verifyIfExistsAccountBi, (req, res)=>{
+    const {customer} = req;
+    customers.splice(customer,1)
+    res.json(customers);
+})
+
 app.listen(3333);
