@@ -46,6 +46,21 @@ app.post("/account",(req, res)=>{
     res.status(201).send();
 });
 
+app.get("/account", verifyIfExistsAccountBi, (req, res)=>{
+    const {customer} = req;
+    res.send(customer);
+})
+
+app.put("/account", verifyIfExistsAccountBi, (req, res)=>{
+    const {customer} = req;
+    const {name} = req.body;
+
+    customer.name = name;
+
+    res.status(201).send();
+})
+
+
 app.get("/statement",verifyIfExistsAccountBi,(req, res)=>{
     const {customer} = req;
     return res.status(200).json(customer);
