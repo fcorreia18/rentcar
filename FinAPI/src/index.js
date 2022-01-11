@@ -47,7 +47,6 @@ app.post("/account",(req, res)=>{
 });
 
 app.get("/statement",verifyIfExistsAccountBi,(req, res)=>{
-    const {bi} = req;
     const {customer} = req;
     return res.status(200).json(customer);
 })
@@ -82,6 +81,15 @@ app.post("/withdraw", verifyIfExistsAccountBi, (req, res)=>{
     }
     customer.statement.push(statementOperation);
     res.status(201).send();
+})
+
+app.get("/statement/:date",verifyIfExistsAccountBi, (req, res)=>{
+    const {customer} = req;
+    const {date} = req.params;
+
+    const dateFormat = new Date(date + " 00:00");
+    const statement = customer.statement.filter((data)=> data.created_at.toDateString() === dateFormat.toDateString() )
+    return res.status(200).send(statement);
 })
 
 app.listen(3333);
