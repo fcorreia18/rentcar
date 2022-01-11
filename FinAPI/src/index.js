@@ -113,4 +113,11 @@ app.delete("/account",verifyIfExistsAccountBi, (req, res)=>{
     res.json(customers);
 })
 
+app.get("/balance", verifyIfExistsAccountBi,(req, res)=>{
+    const customer = req;
+    const balance = getBalance(customer.statement);
+
+    return res.status(200).json(balance);
+})
+
 app.listen(3333);
