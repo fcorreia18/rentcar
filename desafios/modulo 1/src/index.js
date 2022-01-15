@@ -11,16 +11,16 @@ const checkIfExistsUserAccount = (req, res, next) =>{
 
     const {username} = req.headers;
     const filteredUser = users.find((user)=> user.username === username);
-    if(filteredUser.length == 0 || filteredUser == undefined){
+    if(filteredUser == undefined){
         return res.status(404).json({
             error:"User not found"
         });
     }
-    req.username = username;
+    req.user = filteredUser;
     return next();
 }
 
-app.post("/user",checkIfExistsUserAccount,(req, res) =>{
+app.post("/user",(req, res) =>{
     const {name, username}=req.body;
 
      users.push({
@@ -33,11 +33,10 @@ app.post("/user",checkIfExistsUserAccount,(req, res) =>{
     res.status(201).send(users[users.length - 1]);
 });
 
-app.get("/todos",(req, res) =>{
+app.get("/todos",checkIfExistsUserAccount,(req, res) =>{
 
-    const {username} = req.headers;
-
-    return res.send(username.todos)
+    const {user} = req;
+    return res.send(user.todos)
 });
 app.post("/todos",checkIfExistsUserAccount,(req, res) =>{
     const {title, deadline} = req.body;
@@ -50,7 +49,8 @@ app.post("/todos",checkIfExistsUserAccount,(req, res) =>{
         created_at:new Date()
     }
 
-    users.todos.push(insertTodos);
+    const [user] = users.filter((user) => user.username == username);
+    user.todos.push(insertTodos);
 
     return res.status(201).send();
     
