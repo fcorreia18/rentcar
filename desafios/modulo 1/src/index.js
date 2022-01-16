@@ -67,4 +67,13 @@ app.put("/todos/:id",checkIfExistsUserAccount,(req, res) =>{
    return res.json({filteredTodo});
 });
 
+app.patch("/todos/:id/done",checkIfExistsUserAccount,(req, res) =>{
+    const {id} = req.params;
+    const {user} = req;
+    const [filteredTodo] = user.todos.filter((todo)=> todo.id == id);
+    filteredTodo.done = true;
+    console.log(filteredTodo)
+   return res.json({filteredTodo});
+});
+
 app.listen(3333);
