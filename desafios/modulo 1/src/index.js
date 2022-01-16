@@ -45,19 +45,26 @@ app.post("/todos",checkIfExistsUserAccount,(req, res) =>{
         id:uuid(),
         title,
         done:false,
-        deadline: new Date(deadline),
+        deadline: new Date(deadline + " 00:00"),
         created_at:new Date()
     }
 
     const [user] = users.filter((user) => user.username == username);
     user.todos.push(insertTodos);
 
-    return res.status(201).send();
+    return res.status(201).send(user.todos);
     
 });
 
 app.put("/todos/:id",checkIfExistsUserAccount,(req, res) =>{
-
+    const {title, deadline} = req.body;
+    const {id} = req.params;
+    const {user} = req;
+    const [filteredTodo] = user.todos.filter((todo)=> todo.id == id);
+    filteredTodo.title = title;
+    filteredTodo.deadline = deadline;
+    console.log(filteredTodo)
+   return res.json({filteredTodo});
 });
 
 app.listen(3333);
