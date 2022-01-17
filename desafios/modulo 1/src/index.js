@@ -99,5 +99,4 @@ app.delete("/todos/:id",checkIfExistsUserAccount,(req, res) =>{
     return res.status(400).json({error:"todo does not exist"})
 });
 
-
 app.listen(3333);
