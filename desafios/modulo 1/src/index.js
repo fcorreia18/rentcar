@@ -91,9 +91,12 @@ app.delete("/todos/:id",checkIfExistsUserAccount,(req, res) =>{
     const {id} = req.params;
     const {user} = req;
     const [filteredTodo] = user.todos.filter((todo)=> todo.id == id);
-    const indexOfTheItemToRemove = user.todos.indexOf(filteredTodo);
-    user.todos.splice(indexOfTheItemToRemove,1);
-   return res.json({user});
+    if(filteredTodo !== undefined){
+        const indexOfTheItemToRemove = user.todos.indexOf(filteredTodo);
+        user.todos.splice(indexOfTheItemToRemove,1);
+        return res.json({user});
+    }
+    return res.status(400).json({error:"todo does not exist"})
 });
 
 
