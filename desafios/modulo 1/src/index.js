@@ -80,7 +80,6 @@ app.delete("/todos/:id",checkIfExistsUserAccount,(req, res) =>{
     const {id} = req.params;
     const {user} = req;
     const filteredTodo = user.todos.filter((todo)=> todo.id !== id);
-    console.log(`user.length`, user.length, user.todos)
     user.todos.splice(0,user.todos.length,filteredTodo);
    return res.json({user});
 });
