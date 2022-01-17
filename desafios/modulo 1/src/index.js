@@ -19,18 +19,26 @@ const checkIfExistsUserAccount = (req, res, next) =>{
     req.user = filteredUser;
     return next();
 }
+const checkIfUsernameWasAlreadyUsed = (req, res, next) =>{
 
-app.post("/user",(req, res) =>{
+    const {username} = req.body;
+    const [filteredUser] = users.map((user)=> user.username == username);
+    if(filteredUser){
+        return res.status(400).json({
+            error:"username already exists"
+        });
+    }
+    return next();
+}
+app.post("/user",checkIfUsernameWasAlreadyUsed,(req, res) =>{
     const {name, username}=req.body;
-
-     users.push({
-        id:uuid(),
-        name,
-        username,
-        todos:[]
-    })
-
-    res.status(201).send(users[users.length - 1]);
+        users.push({
+            id:uuid(),
+            name,
+            username,
+            todos:[]
+        })
+       return res.status(201).send(users[users.length - 1]);  
 });
 
 app.get("/todos",checkIfExistsUserAccount,(req, res) =>{
@@ -61,10 +69,13 @@ app.put("/todos/:id",checkIfExistsUserAccount,(req, res) =>{
     const {id} = req.params;
     const {user} = req;
     const [filteredTodo] = user.todos.filter((todo)=> todo.id == id);
-    filteredTodo.title = title;
-    filteredTodo.deadline = deadline;
-    console.log(filteredTodo)
-   return res.json({filteredTodo});
+    if(filteredTodo !== undefined){
+
+        filteredTodo.title = title;
+        filteredTodo.deadline = deadline;
+       return res.json({filteredTodo});
+    }
+    return res.status(400).json({error:"todo does not exist"})
 });
 
 app.patch("/todos/:id/done",checkIfExistsUserAccount,(req, res) =>{
