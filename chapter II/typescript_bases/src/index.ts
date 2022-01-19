@@ -1,9 +1,7 @@
 import express from 'express';
-
+import {createCourse} from './routes';
 const app = express();
 
-app.get("/", (req, res)=>{
-    res.send("first route");
-});
+app.get("/", createCourse);
 
 app.listen(3333)
