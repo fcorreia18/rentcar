@@ -7,6 +7,9 @@ export default class SpecificationRepository
     implements ISpecificationRepository
 {
     private specification: Specification[];
+    constructor() {
+        this.specification = [];
+    }
     create({ name, description }: ICreateSpecificationDTO): Specification {
         const specification = new Specification();
         Object.assign(specification, {
@@ -24,9 +27,6 @@ export default class SpecificationRepository
         const specification = this.specification.find(
             (specification) => specification.name === name
         );
-        if (specification) {
-            return specification;
-        }
-        return undefined;
+        return specification;
     }
 }

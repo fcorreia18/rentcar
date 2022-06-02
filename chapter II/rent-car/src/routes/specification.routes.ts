@@ -10,9 +10,7 @@ specificationRoutes.post("/", (req, res) => {
     const createSpecification = new CreateSpecificationService(
         specificationRepository
     );
-
     createSpecification.execute({ name, description });
-
     res.status(201).send();
 });
 
