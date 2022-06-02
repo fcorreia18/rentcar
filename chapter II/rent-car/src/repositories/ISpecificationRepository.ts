@@ -6,5 +6,6 @@ export interface ICreateSpecificationDTO {
 }
 export default interface ISpecificationRepository {
     list(): Specification[];
-    create(specification: ICreateSpecificationDTO): void;
+    create(specification: ICreateSpecificationDTO): Specification;
+    findByName(name: string): Specification | undefined;
 }
