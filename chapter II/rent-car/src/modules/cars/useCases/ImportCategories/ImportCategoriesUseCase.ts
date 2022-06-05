@@ -1,9 +1,6 @@
-import CategoriesRepository from "../../repositories/implementations/CategoriesRepository";
-
 export default class ImportCategoriesUseCase {
-    constructor(private categoriesRepository: CategoriesRepository) {}
-
-    execute(): void {
+    execute(file: unknown): void {
         //  const import = this.categoriesRepository.create
+        return console.log(file);
     }
 }

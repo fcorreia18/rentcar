@@ -1,5 +1,9 @@
 import ImportCategoriesController from "./ImportCategoriesController";
+import ImportCategoriesUseCase from "./ImportCategoriesUseCase";
 
-const importCategoriesController = new ImportCategoriesController();
+const importCategoriesUseCase = new ImportCategoriesUseCase();
+const importCategoriesController = new ImportCategoriesController(
+    importCategoriesUseCase
+);
 
 export { importCategoriesController };
