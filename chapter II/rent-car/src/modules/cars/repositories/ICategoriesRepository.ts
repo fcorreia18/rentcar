@@ -1,5 +1,5 @@
 import Category from "../models/Category";
-import { ICreateCategoryDTO } from "./CategoriesRepository";
+import { ICreateCategoryDTO } from "./implementations/CategoriesRepository";
 
 export default interface ICategoriesRepository {
     list(): Category[];
