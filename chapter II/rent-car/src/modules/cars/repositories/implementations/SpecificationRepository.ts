@@ -7,8 +7,16 @@ export default class SpecificationRepository
     implements ISpecificationRepository
 {
     private specification: Specification[];
-    constructor() {
+    // eslint-disable-next-line no-use-before-define
+    private static INSTANCE: SpecificationRepository;
+    private constructor() {
         this.specification = [];
+    }
+    public static getInstance() {
+        if (!this.INSTANCE) {
+            this.INSTANCE = new SpecificationRepository();
+        }
+        return this.INSTANCE;
     }
     create({ name, description }: ICreateSpecificationDTO): Specification {
         const specification = new Specification();
