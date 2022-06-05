@@ -7,9 +7,17 @@ export interface ICreateCategoryDTO {
 }
 export default class CategoriesRepository implements ICategoriesRepository {
     private categories: Category[];
+    // eslint-disable-next-line no-use-before-define
+    private static INSTANCE: CategoriesRepository;
 
-    constructor() {
+    private constructor() {
         this.categories = [];
+    }
+    public static getInstance() {
+        if (!this.INSTANCE) {
+            this.INSTANCE = new CategoriesRepository();
+        }
+        return this.INSTANCE;
     }
 
     create({ name, description }: ICreateCategoryDTO): Category {

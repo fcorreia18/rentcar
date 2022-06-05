@@ -4,7 +4,7 @@ import ListCategoriesUseCase from "./ListCategoriesUseCase";
 
 export default class ListCategoriesController {
     constructor(private listCategorUseCase: ListCategoriesUseCase) {}
-    handle(request: Request, response: Response) {
+    handle(request: Request, response: Response): Response {
         const categories = this.listCategorUseCase.execute();
         return response.status(200).json(categories);
     }
