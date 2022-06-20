@@ -31,6 +31,14 @@ export default class ImportCategoriesUseCase {
         });
     }
     async execute(file: Express.Multer.File): Promise<void> {
-        console.log(await this.loadCategories(file));
+        const categories = await this.loadCategories(file);
+        categories.map(async (category) => {
+            const { name, description } = category;
+            const categoryAlreadyExist =
+                this.categoriesRepository.findByName(name);
+            if (!categoryAlreadyExist) {
+                this.categoriesRepository.create({ name, description });
+            }
+        });
     }
 }
