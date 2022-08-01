@@ -1,19 +1,16 @@
-import ISpecificationRepository from "../../repositories/ISpecificationRepository";
+import { ICreateSpecificationDTO } from "../../dtos/CreateSpecificationDTO";
+import { ISpecificationRepository } from "../../repositories/ISpecificationRepository";
 
-interface IRequest {
-    name: string;
-    description: string;
-}
-export default class CreateSpecificationUseCase {
-    constructor(private specificationRepository: ISpecificationRepository) {}
+export class CreateSpecificationUseCase {
+    constructor(private specification: ISpecificationRepository) {}
 
-    execute({ name, description }: IRequest): void {
-        const specificationAlreadyExist =
-            this.specificationRepository.findByName(name);
+    public execute({ name, description }: ICreateSpecificationDTO) {
+        const specificationAlreadyExist = this.specification.findByName(name);
+
         if (specificationAlreadyExist) {
-            throw new Error("Specification already exists");
+            throw new Error("Specification Already Exist");
         }
 
-        this.specificationRepository.create({ name, description });
+        this.specification.create({ name, description });
     }
 }

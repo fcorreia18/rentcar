@@ -1,8 +1,8 @@
-import Category from "../models/Category";
-import { ICreateCategoryDTO } from "./implementations/CategoriesRepository";
+import { ICreateCategoryDTO } from "../dtos/CreateCategoryDTO";
+import { Category } from "../model/Category";
 
-export default interface ICategoriesRepository {
+export interface ICategoriesRepository {
+    create(category: ICreateCategoryDTO): void;
     list(): Category[];
-    findByName(name: string): Category | undefined;
-    create(category: ICreateCategoryDTO): Category;
+    findByName(name: string): Category;
 }

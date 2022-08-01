@@ -1,23 +1,13 @@
-import Category from "../../models/Category";
-import ICategoriesRepository from "../../repositories/ICategoriesRepository";
+import { ICreateCategoryDTO } from "../../dtos/CreateCategoryDTO";
+import { ICategoriesRepository } from "../../repositories/ICategoriesRepository";
 
-interface IRequest {
-    name: string;
-    description: string;
-}
-export default class CreateCategoryUseCase {
-    constructor(private categoryRepository: ICategoriesRepository) {}
-
-    execute({ name, description }: IRequest): Category {
-        const categoryAlreadyExists = this.categoryRepository.findByName(name);
-        if (categoryAlreadyExists) {
+export class CreateCategoryUseCase {
+    constructor(private categoriesRepository: ICategoriesRepository) {}
+    public execute({ name, description }: ICreateCategoryDTO): void {
+        const categoryAlreadyExist = this.categoriesRepository.findByName(name);
+        if (categoryAlreadyExist) {
             throw new Error("Category Already Exists");
         }
-        const category = this.categoryRepository.create({
-            name,
-            description,
-        });
-
-        return category;
+        return this.categoriesRepository.create({ name, description });
     }
 }
