@@ -1,5 +1,5 @@
-import { ICreateSpecificationDTO } from "../dtos/CreateSpecificationDTO";
-import { Specification } from "../model/Specification";
+import { ICreateSpecificationDTO } from "../../dtos/CreateSpecificationDTO";
+import { Specification } from "../../model/Specification";
 
 export class SpecificationRepository {
     specifications: Specification[];

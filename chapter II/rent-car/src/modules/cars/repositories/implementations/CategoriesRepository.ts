@@ -1,5 +1,5 @@
-import { ICreateCategoryDTO } from "../dtos/CreateCategoryDTO";
-import { Category } from "../model/Category";
+import { ICreateCategoryDTO } from "../../dtos/CreateCategoryDTO";
+import { Category } from "../../model/Category";
 
 export class CategoriesRepository {
     private categories: Category[];
