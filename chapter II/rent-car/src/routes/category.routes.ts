@@ -13,9 +13,11 @@ categoryRoutes.get("/", (req, res) => {
     listCategoryController.handle(req, res);
 });
 categoryRoutes.post("/", (req, res) => {
+    console.log("novo console");
     createCategoryController.handle(req, res);
 });
 categoryRoutes.post("/import", upload.single("file"), (req, res) => {
+    console.log("Categories imported");
     importCategoryController.handle(req, res);
 });
 
