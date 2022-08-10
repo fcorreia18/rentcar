@@ -12,7 +12,6 @@ export class CreateCategories1660084956240 implements MigrationInterface {
                         type: "uuid",
                         isPrimary: true,
                         isGenerated: true,
-                        generationStrategy: "uuid",
                     },
                     {
                         name: "name",

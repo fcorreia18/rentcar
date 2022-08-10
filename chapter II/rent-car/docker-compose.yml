@@ -6,7 +6,7 @@ services:
      restart: always
      container_name: database_ignite
      ports:
-      - "HOST:CONTAINER"
+      - "5432:5432"
       ##- 5432-5432 o comando acima vai associar o banco de dados a porta 5432 automaticamente
      environment:
      - POSTGRES_DB=rentcar
@@ -14,7 +14,7 @@ services:
      - POSTGRES_PASSWORD=ignite
      volumes:
       - pgdata:/data/postgres
-     ##network_mode: host
+     #network_mode: host
     app:
      build: .
      container_name: rentcar
@@ -23,7 +23,7 @@ services:
          - "3333:3333"
      volumes:
         - .:/users/app
-     ##network_mode: host
+     #network_mode: host
 
 volumes:
  pgdata:
