@@ -1,3 +1,6 @@
+import "reflect-metadata";
+import "./database";
+
 import express from "express";
 import swaggerUI from "swagger-ui-express";
 
@@ -12,4 +15,4 @@ app.get("/", (req, res) => {
     res.json({ message: "Hello world" });
 });
 
-app.listen(3333, () => console.log("server rodando"));
+app.listen(8000, () => console.log("server rodando"));

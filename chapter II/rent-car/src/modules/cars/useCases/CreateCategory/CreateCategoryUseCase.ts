@@ -3,11 +3,16 @@ import { ICategoriesRepository } from "../../repositories/ICategoriesRepository"
 
 export class CreateCategoryUseCase {
     constructor(private categoriesRepository: ICategoriesRepository) {}
-    public execute({ name, description }: ICreateCategoryDTO): void {
-        const categoryAlreadyExist = this.categoriesRepository.findByName(name);
+    public async execute({
+        name,
+        description,
+    }: ICreateCategoryDTO): Promise<void> {
+        const categoryAlreadyExist = await this.categoriesRepository.findByName(
+            name
+        );
         if (categoryAlreadyExist) {
             throw new Error("Category Already Exists");
         }
-        return this.categoriesRepository.create({ name, description });
+        await this.categoriesRepository.create({ name, description });
     }
 }
