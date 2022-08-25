@@ -1,7 +1,7 @@
 version: "3.7"
 
 services:
-  db:
+  database:
     image: postgres
     container_name: database_ignite
     ports:
@@ -22,7 +22,7 @@ services:
     volumes:
       - .:/users/app
     depends_on:
-      - db
+      - database
     # network_mode: host
   
   

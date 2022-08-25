@@ -1,7 +1,6 @@
 import { parse } from "csv-parse";
 import fs from "fs";
 
-import { Category } from "../../entities/Category";
 import { ICategoriesRepository } from "../../repositories/ICategoriesRepository";
 
 interface IImportCategory {
@@ -38,10 +37,10 @@ export class ImportCategoryUseCase {
         categories.map(async (category) => {
             const { name, description } = category;
             const categoryAlreadyExist =
-                this.categoryRepository.findByName(name);
+                await this.categoryRepository.findByName(name);
 
             if (!categoryAlreadyExist) {
-                this.categoryRepository.create({ name, description });
+                await this.categoryRepository.create({ name, description });
             }
         });
     }
