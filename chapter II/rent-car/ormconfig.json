@@ -1,6 +1,6 @@
 {
     "type": "postgres",
-    "host":"localhost",
+    "host":"database_ignite",
     "port": 5432,
     "database": "rentcar",
     "username": "docker",
