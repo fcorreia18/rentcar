@@ -11,5 +11,5 @@ export interface ICreateUserDTO {
 export interface IUsersRepository {
     create(user: ICreateUserDTO): Promise<void>;
     list(): Promise<User[]>;
-    findByName(name: string): Promise<User | undefined>;
+    findByUserName(username: string): Promise<User | undefined>;
 }
