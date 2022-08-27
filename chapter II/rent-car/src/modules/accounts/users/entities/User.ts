@@ -9,8 +9,8 @@ import { v4 as uuidV4 } from "uuid";
 
 @Entity("users")
 export class User {
-    @PrimaryGeneratedColumn()
-    id: string;
+    @PrimaryGeneratedColumn("uuid")
+    id?: string;
 
     @Column()
     name: string;
