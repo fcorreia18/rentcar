@@ -1,6 +1,6 @@
 import { User } from "../entities/User";
 
-interface ICreateUserDTO {
+export interface ICreateUserDTO {
     name: string;
     username: string;
     password: string;
