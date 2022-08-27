@@ -12,7 +12,7 @@ export class CreateUserUseCase {
         private usersRepository: IUsersRepository
     ) {}
     async execute(user: ICreateUserDTO): Promise<void> {
-        const userAlreadExist = this.usersRepository.findByUserName(
+        const userAlreadExist = await this.usersRepository.findByUserName(
             user.username
         );
         if (userAlreadExist) {
