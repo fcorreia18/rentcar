@@ -4,9 +4,13 @@ import { container } from "tsyringe";
 import { ImportCategoryUseCase } from "./ImportCategoryUseCase";
 
 export class ImportCategoryController {
-    public handle(request: Request, response: Response): Response {
+    public async handle(
+        request: Request,
+        response: Response
+    ): Promise<Response> {
         const { file } = request;
         const importCategoryUseCase = container.resolve(ImportCategoryUseCase);
-        return response.send(importCategoryUseCase.execute(file));
+        await importCategoryUseCase.execute(file);
+        return response.status(201).send("Categories imported");
     }
 }
