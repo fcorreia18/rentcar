@@ -15,8 +15,8 @@ export class UsersRepository implements IUsersRepository {
     list(): Promise<User[]> {
         throw new Error("Method not implemented.");
     }
-    async findByUserName(username: string): Promise<User> {
-        const user = await this.ormRepository.findOne({ username });
+    async findByUserEmail(email: string): Promise<User> {
+        const user = await this.ormRepository.findOne({ email });
         return user;
     }
 }

@@ -17,18 +17,13 @@ export class CreateUsers1661611802461 implements MigrationInterface {
                         type: "varchar",
                     },
                     {
-                        name: "username",
+                        name: "email",
                         type: "varchar",
                         isUnique: true,
                     },
                     {
                         name: "password",
                         type: "varchar",
-                    },
-                    {
-                        name: "email",
-                        type: "varchar",
-                        isUnique: true,
                     },
                     {
                         name: "driver_license",
