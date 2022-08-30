@@ -27,7 +27,7 @@ export class CreateUserUseCase {
         await this.usersRepository.create({
             name,
             email,
-            password,
+            password: encriptedPassword,
             driver_license,
         });
     }
