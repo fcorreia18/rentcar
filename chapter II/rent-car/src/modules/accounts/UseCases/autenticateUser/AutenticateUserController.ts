@@ -7,7 +7,7 @@ export class AutenticateUserController {
     async handle(req: Request, res: Response): Promise<Response> {
         const { email, password } = req.body;
         const createUserUseCase = container.resolve(AutenticateUserUseCase);
-        const response = createUserUseCase.execute({ email, password });
-        return res.status(200).json({ data: response });
+        const response = await createUserUseCase.execute({ email, password });
+        return res.status(200).json(response);
     }
 }

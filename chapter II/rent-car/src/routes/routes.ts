@@ -10,6 +10,6 @@ const routes = Router();
 routes.use("/categories", categoryRoutes);
 routes.use("/specifications", specificationRoutes);
 routes.use("/users", userRoutes);
-routes.use("/sessions", authenticateRoutes);
+routes.use(authenticateRoutes);
 
 export { routes };

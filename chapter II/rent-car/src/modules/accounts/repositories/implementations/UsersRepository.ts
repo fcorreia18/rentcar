@@ -16,7 +16,11 @@ export class UsersRepository implements IUsersRepository {
     list(): Promise<User[]> {
         throw new Error("Method not implemented.");
     }
-    async findByUserEmail(email: string): Promise<User> {
+    async findById(id: string): Promise<User | undefined> {
+        const user = await this.ormRepository.findOne({ id });
+        return user;
+    }
+    async findByEmail(email: string): Promise<User | undefined> {
         const user = await this.ormRepository.findOne({ email });
         return user;
     }
