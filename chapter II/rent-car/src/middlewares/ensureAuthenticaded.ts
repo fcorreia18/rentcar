@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import { verify } from "jsonwebtoken";
 
+import { AppError } from "../errors/AppError";
 import { UsersRepository } from "../modules/accounts/repositories/implementations/UsersRepository";
 
 interface IPayload {
@@ -16,7 +17,7 @@ export async function ensureAuthenticated(
     const authHeader = req.headers.authorization;
 
     if (!authHeader) {
-        throw new Error("Token missing");
+        throw new AppError("Token missing", 401);
     }
     // não temos nada antes da virgula porque estamos a ignorar a primeira posição do array, pois não precisamos daquele dado
     const [, token] = authHeader.split(" ");
@@ -33,11 +34,11 @@ export async function ensureAuthenticated(
         const userFound = usersRepository.findById(user_id);
 
         if (!userFound) {
-            throw new Error("User doesnt exist!");
+            throw new AppError("User doesnt exist!", 401);
         }
 
         next();
     } catch (error) {
-        throw new Error("Invalid Token!");
+        throw new AppError("Invalid Token!", 401);
     }
 }
