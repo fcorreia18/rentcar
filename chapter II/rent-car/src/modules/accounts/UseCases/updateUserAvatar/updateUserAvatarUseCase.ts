@@ -4,7 +4,7 @@ import { AppError } from "../../../../errors/AppError";
 import { IUsersRepository } from "../../repositories/IUsersRepository";
 
 @injectable()
-export class updateUserAvatarUseCase {
+export class ApdateUserAvatarUseCase {
     constructor(
         @inject("usersRepository") private usersRepository: IUsersRepository
     ) {}
@@ -15,6 +15,6 @@ export class updateUserAvatarUseCase {
             throw new AppError("User not found");
         }
         user.avatar = file.path;
-        const uploadAvatar = await this.usersRepository.create(user);
+        await this.usersRepository.create(user);
     }
 }
