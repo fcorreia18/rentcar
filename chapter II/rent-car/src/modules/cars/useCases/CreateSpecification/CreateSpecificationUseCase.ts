@@ -15,7 +15,6 @@ export class CreateSpecificationUseCase {
         const specificationAlreadyExist = await this.specification.findByName(
             name
         );
-
         if (specificationAlreadyExist) {
             throw new AppError("Specification Already Exists!");
         }

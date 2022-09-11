@@ -32,7 +32,7 @@ export class AutenticateUserUseCase {
         const comparePassword = await compare(password, userFound.password);
 
         if (!comparePassword) {
-            throw new Error("Incorrect Email or Password");
+            throw new AppError("Incorrect Email or Password!");
         }
         // Payload: dados que queremos passar com o token, é opcional, podemos deixar um objecto vazio
         const token = sign(
