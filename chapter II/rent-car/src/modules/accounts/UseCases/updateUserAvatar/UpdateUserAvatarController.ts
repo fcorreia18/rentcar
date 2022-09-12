@@ -9,14 +9,12 @@ export class UpdateUserAvatarController {
         const { file } = req;
         fs.promises.unlink(file.path);
 
-        const { path: avatar_file } = file;
-        console.log("path", avatar_file);
+        const { filename: avatar_file } = file;
         const { id: user_id } = req.user;
         const updateUserAvatarUseCase = container.resolve(
             UpdateUserAvatarUseCase
         );
-        console.log("id", user_id);
         await updateUserAvatarUseCase.execute({ user_id, avatar_file });
-        return res.send();
+        return res.status(204).json();
     }
 }
