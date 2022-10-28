@@ -1,6 +1,6 @@
 {
     "type": "postgres",
-    "host":"localhost",
+    "host":"database_rent_car",
     "port": 5432,
     "database": "rentcar",
     "username": "docker",
