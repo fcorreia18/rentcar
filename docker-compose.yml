@@ -3,17 +3,16 @@ version: "3.7"
 services:
   database:
     image: postgres
-    container_name: database_ignite
+    container_name: database_rent_car
     ports:
       - "5432:5432"
     environment: 
       - POSTGRES_USER=docker
-      - POSTGRES_PASSWORD=ignite
+      - POSTGRES_PASSWORD=rentcar
       - POSTGRES_DB=rentcar
     volumes:
       - pgdata:/data/postgres
     # network_mode: host
-
   app:
     build: .
     container_name: rentcar

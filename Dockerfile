@@ -4,7 +4,7 @@ WORKDIR /users/app
 
 COPY package.json ./
 
-RUN npm install
+RUN curl -v https://registry.npmjs.com/
 
 COPY . .
 

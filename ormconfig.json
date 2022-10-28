@@ -1,10 +1,10 @@
 {
     "type": "postgres",
-    "host":"database_ignite",
+    "host":"localhost",
     "port": 5432,
     "database": "rentcar",
     "username": "docker",
-    "password": "ignite",
+    "password": "rentcar",
     "entities": ["./src/modules/**/entities/*.ts"],
     "migrations": [
         "./src/database/migrations/*.ts"
