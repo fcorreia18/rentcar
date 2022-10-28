@@ -1,9 +1,7 @@
  <img align="left" width="116" height="116" src="https://raw.githubusercontent.com/jasontaylordev/CleanArchitecture/main/.github/icon.png" />
  
- # Rent Car
- # projeto para praticar Clean Architecture 
+ # RENT CAR: API PARA ALUGUEL DE CARROS
 
-[![Discord](https://img.shields.io/discord/1015949143040069662?label=Discord)](https://discord.gg/k78CFnjh)
 [![Linkedin](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/francisco-correia-2393411a4/?label=Linkedin) 
 
 
